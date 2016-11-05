@@ -1,0 +1,27 @@
+<%= form_for(seriesfranchise) do |f| %>
+  <% if seriesfranchise.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(seriesfranchise.errors.count, "error") %> prohibited this seriesfranchise from being saved:</h2>
+
+      <ul>
+      <% seriesfranchise.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :series_id %>
+    <%= f.text_field :series_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :franchise_id %>
+    <%= f.text_field :franchise_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

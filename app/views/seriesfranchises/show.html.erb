@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Series:</strong>
+  <%= @seriesfranchise.series %>
+</p>
+
+<p>
+  <strong>Franchise:</strong>
+  <%= @seriesfranchise.franchise %>
+</p>
+
+<%= link_to 'Edit', edit_seriesfranchise_path(@seriesfranchise) %> |
+<%= link_to 'Back', seriesfranchises_path %>

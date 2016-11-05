@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  resources :seriesfranchises
+  resources :franchises
+  resources :bookseries
+  resources :series
+  resources :bookgenres
+  resources :purchases
+  resources :authors
   resources :books
   resources :users
   resources :genres

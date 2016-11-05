@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Book:</strong>
+  <%= @bookseries.book %>
+</p>
+
+<p>
+  <strong>Series:</strong>
+  <%= @bookseries.series %>
+</p>
+
+<p>
+  <strong>Position:</strong>
+  <%= @bookseries.position %>
+</p>
+
+<%= link_to 'Edit', edit_bookseries_path(@bookseries) %> |
+<%= link_to 'Back', bookseries_index_path %>
