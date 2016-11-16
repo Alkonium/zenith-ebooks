@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_filter :save_login_state, :only => [:new, :create]
+  
 
   # GET /users
   # GET /users.json
@@ -30,6 +32,7 @@ class UsersController < ApplicationController
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
+        
       else
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -62,6 +65,14 @@ class UsersController < ApplicationController
   end
 
   private
+    def initialize_session
+        reset_session
+        session[:visit_count] ||= 0
+    end
+  
+    def increment_visit_count
+        @visit_count = session[:visit_count]
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])

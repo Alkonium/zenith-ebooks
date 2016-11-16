@@ -1,4 +1,24 @@
 Rails.application.routes.draw do
+  get 'sessions/login'
+
+  get 'sessions/home'
+
+  get 'sessions/profile'
+
+  get 'sessions/setting'
+
+  root to: 'books#index'
+  
+  get "signup", :to => "users#new"
+  get "login", :to => "sessions#login"
+  post "login_attempt", :to => "sessions#login_attempt"
+  get "logout", :to => "sessions#logout"
+  get "home", :to => "sessions#home"
+  get "profile", :to => "users#show"
+  get "setting", :to => "sessions#setting"
+
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   resources :carts
   get 'users/new'
 
