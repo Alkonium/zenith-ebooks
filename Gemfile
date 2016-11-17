@@ -32,6 +32,8 @@ gem 'jquery-ui-rails', '~> 5.0.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
+
 gem 'activeadmin', github: 'activeadmin'
 gem 'inherited_resources', github: 'activeadmin/inherited_resources'
 gem 'devise'
