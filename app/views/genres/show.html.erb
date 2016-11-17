@@ -1,9 +1,35 @@
 <p id="notice"><%= notice %></p>
-
+<% @bookgenres = Bookgenre.where(genre_id: @genre.id) %>
 <p>
-  <strong>Name:</strong>
-  <%= @genre.name %>
+  <h2><%= @genre.name %></h2>
 </p>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Price</th>
+      <th>Words</th>
+      <th>Published</th>
+      <th>Synopsis</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
 
+  <tbody>
+    <% @bookgenres.each do |bookgenre| %>
+	<% @book = Book.find_by(id: @bookgenre.book_id) %>
+      <tr>
+        <td><%= book.title %></td>
+        <td><%= book.price %></td>
+        <td><%= book.words %></td>
+        <td><%= book.published %></td>
+        <td><%= book.synopsis %></td>
+        <td><%= link_to 'Show', book %></td>
+        <td><%= link_to 'Edit', edit_book_path(book) %></td>
+        <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 <%= link_to 'Edit', edit_genre_path(@genre) %> |
 <%= link_to 'Back', genres_path %>
