@@ -1,12 +1,4 @@
 <p id="notice"><%= notice %></p>
-<% @genres = Genre.all %>
-<ul id="genres">
-    <% @genres.each do |genre| %>
-      <li>
-        <%= link_to genre.name, genre %>
-      </li>
-    <% end %>
-</ul>
 <table>
   <thead>
     <tr>
