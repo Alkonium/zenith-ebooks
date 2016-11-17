@@ -12,7 +12,7 @@
   <h1 style="align:center;">Zenith eBooks</h1>
   <div id="user">
 	<ul>
-		<% if session[:user] == nil %>
+		<% if session[:user_id] == nil %>
 		<%= link_to 'Log In', login_path %>
 		<%= link_to 'Register', new_user_path %>
 		<% else %>
