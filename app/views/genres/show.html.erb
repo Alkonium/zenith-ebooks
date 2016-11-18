@@ -17,7 +17,7 @@
 
   <tbody>
     <% @bookgenres.each do |bookgenre| %>
-	<% @book = Book.find_by(id: @bookgenre.book_id) %>
+	<% @book = Book.find_by(id: @bookgenre.book_id).order(:created_at) %>
       <tr>
         <td><%= book.title %></td>
         <td><%= book.price %></td>

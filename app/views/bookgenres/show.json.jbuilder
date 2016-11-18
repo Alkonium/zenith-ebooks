@@ -1,1 +1,1 @@
-json.partial! "bookgenres/bookgenre", bookgenre: @bookgenre
+json.partial! 'bookgenres/bookgenre', bookgenre: @bookgenre

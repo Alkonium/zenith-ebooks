@@ -62,13 +62,14 @@ class SeriesfranchisesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_seriesfranchise
-      @seriesfranchise = Seriesfranchise.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def seriesfranchise_params
-      params.require(:seriesfranchise).permit(:series_id, :franchise_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_seriesfranchise
+    @seriesfranchise = Seriesfranchise.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def seriesfranchise_params
+    params.require(:seriesfranchise).permit(:series_id, :franchise_id)
+  end
 end

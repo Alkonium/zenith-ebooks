@@ -5,17 +5,17 @@ class SeriesfranchisesControllerTest < ActionDispatch::IntegrationTest
     @seriesfranchise = seriesfranchises(:one)
   end
 
-  test "should get index" do
+  test 'should get index' do
     get seriesfranchises_url
     assert_response :success
   end
 
-  test "should get new" do
+  test 'should get new' do
     get new_seriesfranchise_url
     assert_response :success
   end
 
-  test "should create seriesfranchise" do
+  test 'should create seriesfranchise' do
     assert_difference('Seriesfranchise.count') do
       post seriesfranchises_url, params: { seriesfranchise: { franchise_id: @seriesfranchise.franchise_id, series_id: @seriesfranchise.series_id } }
     end
@@ -23,22 +23,22 @@ class SeriesfranchisesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to seriesfranchise_url(Seriesfranchise.last)
   end
 
-  test "should show seriesfranchise" do
+  test 'should show seriesfranchise' do
     get seriesfranchise_url(@seriesfranchise)
     assert_response :success
   end
 
-  test "should get edit" do
+  test 'should get edit' do
     get edit_seriesfranchise_url(@seriesfranchise)
     assert_response :success
   end
 
-  test "should update seriesfranchise" do
+  test 'should update seriesfranchise' do
     patch seriesfranchise_url(@seriesfranchise), params: { seriesfranchise: { franchise_id: @seriesfranchise.franchise_id, series_id: @seriesfranchise.series_id } }
     assert_redirected_to seriesfranchise_url(@seriesfranchise)
   end
 
-  test "should destroy seriesfranchise" do
+  test 'should destroy seriesfranchise' do
     assert_difference('Seriesfranchise.count', -1) do
       delete seriesfranchise_url(@seriesfranchise)
     end

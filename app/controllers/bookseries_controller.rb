@@ -62,13 +62,14 @@ class BookseriesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_bookseries
-      @bookseries = Bookseries.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def bookseries_params
-      params.require(:bookseries).permit(:book_id, :series_id, :position)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_bookseries
+    @bookseries = Bookseries.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def bookseries_params
+    params.require(:bookseries).permit(:book_id, :series_id, :position)
+  end
 end

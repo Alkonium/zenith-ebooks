@@ -1,1 +1,1 @@
-json.partial! "franchises/franchise", franchise: @franchise
+json.partial! 'franchises/franchise', franchise: @franchise
