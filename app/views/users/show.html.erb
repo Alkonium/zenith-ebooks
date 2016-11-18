@@ -1,13 +1,10 @@
 <p id="notice"><%= notice %></p>
+<% @purchases = Purchase.where(user_id: @user.id) %>
+<% @publications = Author.where(user_id: @user.id) %>
 
 <p>
   <strong>Username:</strong>
   <%= @user.username %>
-</p>
-
-<p>
-  <strong>Password:</strong>
-  <%= @user.password %>
 </p>
 
 <p>
@@ -19,6 +16,67 @@
   <strong>Penname:</strong>
   <%= @user.penName %>
 </p>
+<% if @purchases.count != 0 %>
+<h3>Purchases</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Price</th>
+      <th>Words</th>
+      <th>Published</th>
+      <th>Synopsis</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
 
+  <tbody>
+    <% @purchases.each do |purchase| %>
+	<% @book = Book.find_by(id: purchase.book_id) %>
+      <tr>
+        <td><%= @book.title %></td>
+        <td><%= @book.price %></td>
+        <td><%= @book.words %></td>
+        <td><%= @book.published %></td>
+        <td><%= @book.synopsis %></td>
+        <td><%= link_to 'Show', @book %></td>
+        <td><%= link_to 'Edit', edit_book_path(@book) %></td>
+        <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>
+<% if @publications.count !=0 %>
+<h3>Publications</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Price</th>
+      <th>Words</th>
+      <th>Published</th>
+      <th>Synopsis</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @publications.each do |publication| %>
+	<% @book = Book.find_by(id: publication.book_id) %>
+      <tr>
+        <td><%= @book.title %></td>
+        <td><%= @book.price %></td>
+        <td><%= @book.words %></td>
+        <td><%= @book.published %></td>
+        <td><%= @book.synopsis %></td>
+        <td><%= link_to 'Show', @book %></td>
+        <td><%= link_to 'Edit', edit_book_path(@book) %></td>
+        <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

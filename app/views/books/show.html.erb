@@ -1,8 +1,15 @@
 <p id="notice"><%= notice %></p>
-
+<% @authors = Author.where(book_id: @book.id) %>
 <p>
   <strong>Title:</strong>
   <%= @book.title %>
+</p>
+
+<p>
+  <strong>Written by:</strong>
+  <% @authors.each do |author| %>
+    <%= link_to author.user.penName, author.user %>, 
+  <% end %>
 </p>
 
 <p>

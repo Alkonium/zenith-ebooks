@@ -1,8 +1,8 @@
-ActiveAdmin.register Purchase do
+ActiveAdmin.register Bookgenre do
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
-  permit_params :book_id, :user_id
+  permit_params :book_id, :genre_id
   #
   # or
   #
