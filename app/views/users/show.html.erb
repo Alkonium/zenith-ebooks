@@ -16,7 +16,7 @@
   <strong>Penname:</strong>
   <%= @user.penName %>
 </p>
-<% if @purchases.count != 0 %>
+<% if @purchases.count != 0 && session[:user_id] = @user.id%>
 <h3>Purchases</h3>
 <table>
   <thead>
@@ -48,7 +48,12 @@
 </table>
 <% end %>
 <% if @publications.count !=0 %>
-<h3>Publications</h3>
+<h3> <% if session[:user_id] = @user.id %>
+	<%= My %>
+	<% end %>
+	Publications
+</h3>
+	
 <table>
   <thead>
     <tr>
