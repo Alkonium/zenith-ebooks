@@ -48,8 +48,8 @@
 </table>
 <% end %>
 <% if @publications.count !=0 %>
-<h3> <% if session[:user_id] = @user.id %>
-	<%= My %>
+<h3> <% if session[:user_id] == @user.id %>
+	<%= 'My' %>
 	<% end %>
 	Publications
 </h3>
