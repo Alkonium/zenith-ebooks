@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'info/about'
+
+  get 'info/contact'
+
+  get 'info/disclaimer'
+
   get 'static_pages/contact'
 
   get 'static_pages/about'
@@ -20,9 +26,9 @@ Rails.application.routes.draw do
   get 'home', to: 'sessions#home'
   get 'profile', to: 'users#show'
   get 'setting', to: 'sessions#setting'
-  get 'contact', to: 'static_pages#contact'
-  get 'about', to: 'static_pages#about'
-  get 'disclaimer', to: 'static_pages#disclaimer'
+  get 'contact', to: 'info#contact'
+  get 'about', to: 'info#about'
+  get 'disclaimer', to: 'info#disclaimer'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
