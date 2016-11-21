@@ -5,4 +5,9 @@ class Book < ApplicationRecord
   validates :coverart, presence: true
   mount_uploader :manuscript, ManuscriptUploader
   mount_uploader :coverart, CoverArtUploader
+  
+  def self.search(search)
+    where("title LIKE ?", "%#{search}%") 
+    where("synopsis LIKE ?", "%#{search}%")
+  end
 end

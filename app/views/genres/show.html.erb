@@ -7,6 +7,7 @@
   <thead>
     <tr>
       <th>Title</th>
+	  <th>Author</th>
       <th>Price</th>
       <th>Words</th>
       <th>Published</th>
@@ -17,9 +18,14 @@
 
   <tbody>
     <% @bookgenres.each do |bookgenre| %>
-	<% @book = Book.find_by(id: bookgenre.book_id) %>
+	<% @book = bookgenre.book %>
+	<% @authors = Author.where(book_id: @book.id) %>
       <tr>
         <td><%= @book.title %></td>
+		<td><% @authors.each do |author| %>
+		<%= link_to author.user.penName, author.user %><br/>
+		<% end %>
+		</td>
         <td><%= @book.price %></td>
         <td><%= @book.words %></td>
         <td><%= @book.published %></td>
