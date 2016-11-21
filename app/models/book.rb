@@ -7,7 +7,6 @@ class Book < ApplicationRecord
   mount_uploader :coverart, CoverArtUploader
   
   def self.search(search)
-    where("title LIKE ?", "%#{search}%") 
-    where("synopsis LIKE ?", "%#{search}%")
+    where("title LIKE ?", "%#{search}%").or(where("synopsis LIKE ?", "%#{search}%"))
   end
 end

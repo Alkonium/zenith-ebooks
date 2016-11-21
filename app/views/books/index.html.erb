@@ -27,7 +27,7 @@
 		<%= link_to genre.genre.name, genre.genre %><br/>
 		<% end %>
 		</td>
-        <td><%= book.price %></td>
+        <td><%= number_to_currency(book.price, locale: :ca) %></td>
         <td><%= book.words %></td>
         <td><%= book.published %></td>
         <td><%= book.synopsis %></td>

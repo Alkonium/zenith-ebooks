@@ -10,6 +10,7 @@ class GenresController < ApplicationController
   # GET /genres/1
   # GET /genres/1.json
   def show
+    @bookgenres = Bookgenre.where(genre_id: @genre.id)
   end
 
   private
