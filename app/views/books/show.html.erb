@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 <% @authors = Author.where(book_id: @book.id) %>
+<% @authored = false %>
 <p>
   <strong>Title:</strong>
   <%= @book.title %>
@@ -8,7 +9,10 @@
 <p>
   <strong>Written by:</strong>
   <% @authors.each do |author| %>
-    <%= link_to author.user.penName, author.user %>, 
+    <% if author.user_id == session[:user_id] %>
+	  <% @authored = true; %>
+	<% end %>
+    <%= link_to author.user.penName, author.user %><br/>
   <% end %>
 </p>
 
@@ -31,6 +35,19 @@
   <strong>Synopsis:</strong>
   <%= @book.synopsis %>
 </p>
-
-<%= link_to 'Edit', edit_book_path(@book) %> |
+<% @purchase = Purchase.where(book_id: @book.id, user_id: session[:user_id]) %>
+<% @incart = Cart.where(book_id: @book.id, user_id: session[:user_id]) %>
+<% if @authored %>
+  <%= link_to 'Edit', edit_book_path(@book) %> |
+<% elsif @purchase.count == 0 && @incart.count == 0 %>
+  <%= link_to 'Add to Cart', '#' %> |
+  <%= link_to 'Buy Now', '#' %> |
+<% elsif @purchase.count == 0 && @incart.count == 1 %>
+  <%= link_to 'Remove from Cart', @incart.first, method: :delete, data: { confirm: 'Are you sure?' }  %> |
+  <%= link_to 'Buy Now', '#' %> |
+<% else %>
+  <%= link_to 'Download as .mobi' %>
+  <%= link_to 'Download as .epub' %>
+  <%= link_to 'Download as .pdf' %>
+<% end %>
 <%= link_to 'Back', books_path %>

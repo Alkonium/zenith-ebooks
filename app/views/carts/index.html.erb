@@ -1,12 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Carts</h1>
-
+<h1>My Cart</h1>
+<% if @carts.count != 0 %>
 <table>
   <thead>
     <tr>
-      <th>User</th>
-      <th>Book</th>
+      <th>Title</th>
+      <th>Price</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,10 +14,9 @@
   <tbody>
     <% @carts.each do |cart| %>
       <tr>
-        <td><%= cart.user %></td>
-        <td><%= cart.book %></td>
+        <td><%= cart.book.title %></td>
+		<td><%= cart.book.price %></td>
         <td><%= link_to 'Show', cart %></td>
-        <td><%= link_to 'Edit', edit_cart_path(cart) %></td>
         <td><%= link_to 'Destroy', cart, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
@@ -26,4 +25,7 @@
 
 <br>
 
-<%= link_to 'New Cart', new_cart_path %>
+<%= link_to 'Check Out', new_cart_path %>
+<% else %>
+<p>No items found.</p>
+<% end %>
