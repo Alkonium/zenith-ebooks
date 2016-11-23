@@ -35,10 +35,35 @@
   <strong>Synopsis:</strong>
   <%= @book.synopsis %>
 </p>
+<% if @authored %>
+  <div class="field">
+    <% @genres = Genre.all %>
+    <% @genres.each do |genre| %>
+	  <% if Bookgenre.where(genre_id: genre.id, book_id: @book.id).count == 0 %>
+	    <div class="input-group">
+          <div class="input-group-btn">
+            <%= f.hidden_field :book_id, value: @book.id %>
+            <%= f.submit "Add to " + genre.name,  class: "btn btn-primary" %>
+          </div>
+        </div>
+	  <% else %>
+	    <div class="input-group">
+          <div class="input-group-btn">
+            <% @bookgenre = Bookgenre.where(genre_id: genre.id, book_id: @book.id).first %>
+			<%= link_to 'Remove from ' + genre.name, @bookgenre, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>
+          </div>
+        </div>
+	  <% end %>
+	<% end %>
+  </div>
+<% end %>
 <% @purchase = Purchase.where(book_id: @book.id, user_id: session[:user_id]) %>
 <% @incart = Cart.where(book_id: @book.id, user_id: session[:user_id]) %>
 <% if @authored %>
   <%= link_to 'Edit', edit_book_path(@book) %> |
+  <%= link_to 'Download as .mobi' %> |
+  <%= link_to 'Download as .epub' %> |
+  <%= link_to 'Download as .pdf' %> |
 <% elsif @purchase.count == 0 && @incart.count == 0 %>
   <%= link_to 'Add to Cart', '#' %> |
   <%= link_to 'Buy Now', '#' %> |
@@ -46,8 +71,8 @@
   <%= link_to 'Remove from Cart', @incart.first, method: :delete, data: { confirm: 'Are you sure?' }  %> |
   <%= link_to 'Buy Now', '#' %> |
 <% else %>
-  <%= link_to 'Download as .mobi' %>
-  <%= link_to 'Download as .epub' %>
-  <%= link_to 'Download as .pdf' %>
+  <%= link_to 'Download as .mobi' %> |
+  <%= link_to 'Download as .epub' %> |
+  <%= link_to 'Download as .pdf' %> |
 <% end %>
 <%= link_to 'Back', books_path %>

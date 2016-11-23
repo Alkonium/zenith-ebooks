@@ -31,6 +31,7 @@ class BooksController < ApplicationController
   # POST /books.json
   def create
     @book = Book.new(book_params)
+    Author.create(book_id: @book.id, user_id: session[:user_id])
     respond_to do |format|
       if @book.save
         format.html { redirect_to @book, notice: 'Book was successfully published.' }

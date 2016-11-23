@@ -28,7 +28,7 @@ class BookgenresController < ApplicationController
 
     respond_to do |format|
       if @bookgenre.save
-        format.html { redirect_to @bookgenre, notice: 'Bookgenre was successfully created.' }
+        format.html { redirect_to @bookgenre, notice: @bookgenre.book.title + ' added to ' + @bookgenre.genre.name }
         format.json { render :show, status: :created, location: @bookgenre }
       else
         format.html { render :new }
@@ -54,6 +54,7 @@ class BookgenresController < ApplicationController
   # DELETE /bookgenres/1
   # DELETE /bookgenres/1.json
   def destroy
+    @bookgenre = Bookgenre.find(params[:id])
     @bookgenre.destroy
     respond_to do |format|
       format.html { redirect_to bookgenres_url, notice: 'Bookgenre was successfully destroyed.' }
