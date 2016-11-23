@@ -5,6 +5,7 @@ class BooksController < ApplicationController
   # GET /books.json
   def index
     @books = Book.all.order(:created_at)
+    @order_item = current_order.order_items.new
     if params[:search]
       @books = Book.search(params[:search]).order("created_at DESC")
     else

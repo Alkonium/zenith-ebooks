@@ -18,6 +18,7 @@
 	<% @genres = Bookgenre.where(book_id: book.id) %>
 	<% @authors = Author.where(book_id: book.id) %>
       <tr>
+		<%= render "book_row", book: book, order_item: @order_item %>
         <td><%= link_to book.title,book %></td>
 		<td><% @authors.each do |author| %>
 		<%= link_to author.user.penName, author.user %><br/>

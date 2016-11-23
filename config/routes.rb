@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'order_items/create'
+
+  get 'order_items/update'
+
+  get 'order_items/destroy'
+
   get 'info/about'
 
   get 'info/contact'
@@ -32,9 +38,10 @@ Rails.application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  resources :carts
   get 'users/new'
 
+  resources :order_items, only: [:create, :update, :destroy]
+  resource :cart, only: [:show]
   resources :seriesfranchises
   resources :franchises
   resources :bookseries

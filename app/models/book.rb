@@ -1,4 +1,5 @@
 class Book < ApplicationRecord
+  has_many :order_items
   validates :title, presence: true
   validates :synopsis, presence: true
   validates :manuscript, presence: true

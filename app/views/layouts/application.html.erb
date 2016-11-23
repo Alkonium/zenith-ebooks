@@ -36,9 +36,9 @@
 	    <li class="nav-item"><%= link_to 'Log In', login_path, class: "nav-link" %></li>
 		<li class="nav-item"><%= link_to 'Register', new_user_path, class: "nav-link" %></li>
       <% else %>
-		<% @item_count = Cart.where(user_id: session[:user_id]).count %>
+		<% @item_count = OrderItem.where(order_id: session[:order_id]).count %>
 		<li class="nav-item"><%= link_to 'My Profile', User.find(session[:user_id]), class: "nav-link" %></li>
-		<li class="nav-item"><%= link_to 'My Cart (' + @item_count.to_s + ')', carts_path, class: "nav-link" %></li>
+		<li class="nav-item"><%= link_to 'My Cart (' + @item_count.to_s + ')', cart_path, class: "nav-link" %></li>
 		<li class="nav-item"><%= link_to 'Publish', new_book_path, class: "nav-link" %></li>
 		<li class="nav-item"><%= link_to 'Log Out', logout_path, class: "nav-link" %></li>
 	  <% end %>
