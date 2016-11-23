@@ -42,8 +42,7 @@
 	  <% if Bookgenre.where(genre_id: genre.id, book_id: @book.id).count == 0 %>
 	    <div class="input-group">
           <div class="input-group-btn">
-            <%= f.hidden_field :book_id, value: @book.id %>
-            <%= f.submit "Add to " + genre.name,  class: "btn btn-primary" %>
+       
           </div>
         </div>
 	  <% else %>

@@ -31,11 +31,12 @@ class BooksController < ApplicationController
   # POST /books.json
   def create
     @book = Book.new(book_params)
-    Author.create(book_id: @book.id, user_id: session[:user_id])
+    @book.coverart = params[:file]
+    @book.manuscript = params[:file]
     respond_to do |format|
       if @book.save
+        Author.create(book_id: @book.id, user_id: session[:user_id])
         format.html { redirect_to @book, notice: 'Book was successfully published.' }
-        Author.create
         format.json { render :show, status: :created, location: @book }
       else
         format.html { render :new }
