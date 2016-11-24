@@ -35,13 +35,14 @@ Rails.application.routes.draw do
   get 'contact', to: 'info#contact'
   get 'about', to: 'info#about'
   get 'disclaimer', to: 'info#disclaimer'
+  get 'checkout', to: 'carts#checkout'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   get 'users/new'
 
   resources :order_items, only: [:create, :update, :destroy]
-  resource :cart, only: [:show]
+  resource :cart, only: [:show, :checkout]
   resources :seriesfranchises
   resources :franchises
   resources :bookseries

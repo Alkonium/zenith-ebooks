@@ -68,6 +68,14 @@ class BooksController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def buynow
+    Purchase.create(book_id: @book.id, user_id: session[:user_id])
+    @order_item = OrderItem.where(book_id: @book.id, session[:order_id])
+    if (@order_item.nil?)
+      @order_item.destroy
+    end
+  end
 
   private
 
