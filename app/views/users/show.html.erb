@@ -64,16 +64,16 @@
 
   <tbody>
     <% @publications.each do |publication| %>
-	<% @book = Book.find_by(id: publication.book_id) %>
+	  <% @book = publication.book %>
       <tr>
         <td><%= link_to @book.title, @book %></td>
         <td><%= @book.price %></td>
         <td><%= @book.words %></td>
         <td><%= @book.published %></td>
         <td><%= @book.synopsis %></td>
-		<% if @user.id == session[:user_id] %>
-        <td><%= link_to 'Edit', edit_book_path(@book) %></td>
-        <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if @user.id == session[:user_id] %>
+          <td><%= link_to 'Edit', edit_book_path(@book) %></td>
+          <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 		<% end %>
       </tr>
     <% end %>

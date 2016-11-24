@@ -42,7 +42,7 @@
 	  <% if Bookgenre.where(genre_id: genre.id, book_id: @book.id).count == 0 %>
 	    <div class="input-group">
           <div class="input-group-btn">
-       
+		    <%= link_to 'Add to ' + genre.name, Bookgenre.create(genre_id: genre.id, book_id: @book.id), class: "btn btn-primary" %>
           </div>
         </div>
 	  <% else %>
@@ -57,17 +57,20 @@
   </div>
 <% end %>
 <% @purchase = Purchase.where(book_id: @book.id, user_id: session[:user_id]) %>
-<% @incart = Cart.where(book_id: @book.id, user_id: session[:user_id]) %>
+<% @incart = OrderItem.where(book_id: @book.id, order_id: session[:order_id]) %>
 <% if @authored %>
   <%= link_to 'Edit', edit_book_path(@book) %> |
   <%= link_to 'Download as .mobi' %> |
   <%= link_to 'Download as .epub' %> |
   <%= link_to 'Download as .pdf' %> |
 <% elsif @purchase.count == 0 && @incart.count == 0 %>
-  <%= link_to 'Add to Cart', '#' %> |
+  <%= form_for @order_item, remote: true do |f| %>
+            <%= f.hidden_field :book_id, value: book.id %>
+            <%= f.submit "Add to Cart" %> |
+      <% end %> |
   <%= link_to 'Buy Now', '#' %> |
 <% elsif @purchase.count == 0 && @incart.count == 1 %>
-  <%= link_to 'Remove from Cart', @incart.first, method: :delete, data: { confirm: 'Are you sure?' }  %> |
+  <%= link_to "Remove from Cart", @incart.first, { data: { confirm: "Are you sure you wish to remove the book '#{@incart.first.book.title}' from your cart?" }, method: :delete, remote: true} %> |
   <%= link_to 'Buy Now', '#' %> |
 <% else %>
   <%= link_to 'Download as .mobi' %> |
