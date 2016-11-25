@@ -29,13 +29,14 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#login'
   post 'login_attempt', to: 'sessions#login_attempt'
   get 'logout', to: 'sessions#logout'
-  get 'home', to: 'sessions#home'
+  get 'home', to: 'books#index'
   get 'profile', to: 'users#show'
   get 'setting', to: 'sessions#setting'
   get 'contact', to: 'info#contact'
   get 'about', to: 'info#about'
   get 'disclaimer', to: 'info#disclaimer'
   get 'checkout', to: 'carts#checkout'
+  get 'buynow', to: 'carts#buynow'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)

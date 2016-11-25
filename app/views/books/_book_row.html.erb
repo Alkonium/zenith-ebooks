@@ -9,7 +9,7 @@
       <%= form_for order_item, remote: true do |f| %>
 		<h4 class="text-right">Price: <span style="color: green"><%= number_to_currency book.price %></span></h4>
         <div class="input-group">
-		  <% if OrderItem.where(book_id: book.id, order_id: session[:order_id]).count == 0 %>
+		  <% if OrderItem.where(book_id: book.id, order_id: session[:order_id]).count == 0 && Purchase.where(book_id: book.id, user_id: session[:user_id]).count == 0 && Author.where(book_id: book.id, user_id: session[:user_id]).count == 0 && session[:user_id] != nil%>
           <div class="input-group-btn">
             <%= f.hidden_field :book_id, value: book.id %>
             <%= f.submit "Add to Cart", class: "btn btn-primary" %>

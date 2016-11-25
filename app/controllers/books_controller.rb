@@ -70,8 +70,11 @@ class BooksController < ApplicationController
   end
   
   def buynow
+    @buynow = Order.new
     Purchase.create(book_id: @book.id, user_id: session[:user_id])
-    @order_item = OrderItem.where(book_id: @book.id, session[:order_id])
+    OrderItem.create(book_id: @book.id, order_id: @buynow.id)
+    @buynow.status = 3
+    @order_item = OrderItem.where(book_id: @book.id,order_id: session[:order_id])
     if (@order_item.nil?)
       @order_item.destroy
     end
