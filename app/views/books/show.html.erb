@@ -65,7 +65,7 @@
   <%= link_to 'Download as .pdf' %> |
 <% elsif @purchase.count == 0 && @incart.count == 0 %>
   <%= link_to 'Add to Cart', OrderItem.create(book_id: @book.id, order_id: session[:order_id]) %> |
-  <%= link_to 'Buy Now', buynow %> |
+  <%= link_to 'Buy Now', buynow_path %> |
 <% elsif @purchase.count == 0 && @incart.count == 1 %>
   <%= link_to "Remove from Cart", @incart.first, { data: { confirm: "Are you sure you wish to remove the book '#{@incart.first.book.title}' from your cart?" }, method: :delete, remote: true} %> |
   <%= link_to 'Buy Now', '#' %> |

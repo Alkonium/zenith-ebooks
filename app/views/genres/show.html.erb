@@ -2,34 +2,9 @@
 <p>
   <h2><%= @genre.name %></h2>
 </p>
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-	  <th>Author</th>
-      <th>Price</th>
-      <th>Words</th>
-      <th>Published</th>
-      <th>Synopsis</th>
-    </tr>
-  </thead>
-
-  <tbody>
     <% @bookgenres.each do |bookgenre| %>
 	<% @book = bookgenre.book %>
 	<% @authors = Author.where(book_id: @book.id) %>
-      <tr>
-        <td><%= link_to @book.title, @book %></td>
-		<td><% @authors.each do |author| %>
-		<%= link_to author.user.penName, author.user %><br/>
-		<% end %>
-		</td>
-        <td><%= number_to_currency(@book.price,locale: :ca) %></td>
-        <td><%= @book.words %></td>
-        <td><%= @book.published %></td>
-        <td><%= @book.synopsis %></td>
-      </tr>
+	<%= render "book_row", book: @book, order_item: @order_item %>
     <% end %>
-  </tbody>
-</table>
 <%= link_to 'Back', root_path %>

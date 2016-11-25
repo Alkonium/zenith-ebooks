@@ -1,42 +1,12 @@
 <p id="notice"><%= notice %></p>
 <% if @books.present? %>
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-	  <th>Author</th>
-	  <th>Genre</th>
-      <th>Price</th>
-      <th>Words</th>
-      <th>Published</th>
-      <th>Synopsis</th>
-    </tr>
-  </thead>
-
   <tbody>
     <% @books.each do |book| %>
 	<% @genres = Bookgenre.where(book_id: book.id) %>
 	<% @authors = Author.where(book_id: book.id) %>
-      <tr>
 		<%= render "book_row", book: book, order_item: @order_item %>
-        <td><%= link_to book.title,book %></td>
-		<td><% @authors.each do |author| %>
-		<%= link_to author.user.penName, author.user %><br/>
-		<% end %>
-		</td>
-		<td><% @genres.each do |genre| %>
-		<%= link_to genre.genre.name, genre.genre %><br/>
-		<% end %>
-		</td>
-        <td><%= number_to_currency(book.price, locale: :ca) %></td>
-        <td><%= book.words %></td>
-        <td><%= book.published %></td>
-        <td><%= book.synopsis %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
+    <% end %>
 <% else %>
   <p>No books found.</p>
 <% end %>

@@ -11,6 +11,7 @@ class GenresController < ApplicationController
   # GET /genres/1.json
   def show
     @bookgenres = Bookgenre.where(genre_id: @genre.id)
+    @order_item = current_order.order_items.new
   end
 
   private
