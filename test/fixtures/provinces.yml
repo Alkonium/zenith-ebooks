@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  GST: 1
+  PST: 1
+  HST: MyString
+  integer: MyString
+
+two:
+  name: MyString
+  GST: 1
+  PST: 1
+  HST: MyString
+  integer: MyString

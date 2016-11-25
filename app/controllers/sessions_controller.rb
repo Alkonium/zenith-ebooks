@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     if authorized_user
       session[:user_id] = authorized_user.id
       flash[:notice] = "You are logged in as #{authorized_user.penName}"
-      redirect_to(action: 'home')
+      redirect_to(action: 'root')
     else
       flash[:notice] = 'Invalid Username or Password'
       flash[:color] = 'invalid'
@@ -29,6 +29,11 @@ end
 
   def logout
     session[:user_id] = nil
+    @order = Order.where(id: session[:order_id])
+    if @order.status == 1
+      @order.status = 3
+    end
+    session[:order_id] = nil
     redirect_to action: 'login'
   end
 end

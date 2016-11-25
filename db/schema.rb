@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161122194611) do
+ActiveRecord::Schema.define(version: 20161125173705) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -139,6 +139,16 @@ ActiveRecord::Schema.define(version: 20161122194611) do
     t.index ["order_status_id"], name: "index_orders_on_order_status_id"
   end
 
+  create_table "provinces", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "GST"
+    t.integer  "PST"
+    t.string   "HST"
+    t.string   "integer"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "purchases", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "book_id"
@@ -169,10 +179,15 @@ ActiveRecord::Schema.define(version: 20161122194611) do
     t.string   "password"
     t.string   "email"
     t.string   "penName"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.string   "salt"
     t.string   "avatar"
+    t.string   "address"
+    t.integer  "province_id"
+    t.string   "city"
+    t.string   "postalcode"
+    t.index ["province_id"], name: "index_users_on_province_id"
   end
 
 end
